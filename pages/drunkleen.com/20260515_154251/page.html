@@ -1,0 +1,2180 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="min-h-full" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DrunkLeen</title>
+    <meta name="description" content="I write here to offload some RAM from my brain.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://drunkleen.com/">
+    <link rel="alternate" type="application/rss+xml" title="DrunkLeen RSS (English)" href="/feed">
+    <link rel="alternate" type="application/rss+xml" title="DrunkLeen RSS (Persian)" href="/feed-fa">
+    <meta property="og:title" content="DrunkLeen">
+    <meta property="og:description" content="I write here to offload some RAM from my brain.">
+    <meta property="og:url" content="https://drunkleen.com/">
+    <meta property="og:site_name" content="DrunkLeen">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DrunkLeen">
+    <meta name="twitter:description" content="I write here to offload some RAM from my brain.">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8557573804858508" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            color-scheme: dark;
+            --page-bg: radial-gradient(circle at top, rgba(13,148,136,0.12), rgba(2,6,23,0.95)), #020617;
+            --text-primary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --link-default: rgba(226, 232, 240, 0.75);
+            --link-hover: #67e8f9;
+            --panel-bg: rgba(10, 15, 30, 0.82);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --panel-shadow: 0 20px 60px rgba(2, 6, 23, 0.35);
+            --header-height: 56px;
+        }
+        :root[data-theme='light'] {
+            color-scheme: light;
+            --page-bg: radial-gradient(circle at top, rgba(14,165,233,0.25), rgba(248,250,252,0.95)), #f8fafc;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --link-default: rgba(15, 23, 42, 0.7);
+            --link-hover: #0f172a;
+            --panel-bg: rgba(255, 255, 255, 0.92);
+            --panel-border: rgba(15, 23, 42, 0.12);
+            --panel-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            --header-height: 56px;
+        }
+        @font-face {
+            font-family: 'Vazirmatn';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/static/fonts/Vazirmatn-400.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Vazirmatn';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('/static/fonts/Vazirmatn-600.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Vazirmatn';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/static/fonts/Vazirmatn-700.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Vazirmatn';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url('/static/fonts/Vazirmatn-900.ttf') format('truetype');
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        body {
+            background: var(--page-bg);
+            color: var(--text-primary);
+            transition: background 0.45s ease, color 0.45s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .font-english {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .font-persian {
+            font-family: 'Vazirmatn', 'Vazirmatn FD', 'IRANSans', 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+        body.overflow-hidden {
+            overflow: hidden;
+        }
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(148,163,184,0.2), rgba(2,6,23,0.97));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4000;
+            transition: opacity 0.35s ease;
+            font-family: "Courier New", Courier, "SFMono-Regular", Menlo, Consolas, monospace;
+        }
+        .page-loader--hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-core {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            color: #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            font-size: 0.85rem;
+        }
+        .loader-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            color: rgba(226,232,240,0.8);
+        }
+        .loader-binary {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            gap: 0.35rem;
+        }
+        .loader-digit {
+            width: 1.8rem;
+            height: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            border-radius: 0.45rem;
+            background: rgba(15,23,42,0.65);
+            border: 1px solid rgba(94,234,212,0.15);
+            color: rgba(94,234,212,0.78);
+            box-shadow: 0 4px 20px rgba(15,23,42,0.45);
+            animation: loaderDigitPulse 1.8s ease-in-out infinite;
+            animation-delay: calc(var(--loader-digit-index, 0) * 0.05s);
+        }
+        @keyframes loaderDigitPulse {
+            0%, 100% { transform: translateY(0); opacity: 0.65; }
+            50% { transform: translateY(-6px); opacity: 1; }
+        }
+        .search-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2,6,23,0.75);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 10vh;
+            z-index: 1200;
+        }
+        .search-overlay.active {
+            display: flex;
+        }
+        .search-panel {
+            width: min(640px, 90vw);
+            background: rgba(15,23,42,0.95);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 1.25rem;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+        }
+        .search-panel input {
+            width: 100%;
+            border: none;
+            background: rgba(15,23,42,0.4);
+            border-radius: 999px;
+            padding: 0.75rem 1.2rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        .search-results {
+            margin-top: 1rem;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        .search-result-item {
+            display: block;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            color: var(--text-primary);
+        }
+        .search-result-item:hover {
+            color: var(--link-hover);
+        }
+        :root[data-theme='light'] .search-panel {
+            background: rgba(255,255,255,0.97);
+            border-color: rgba(148,163,184,0.3);
+        }
+        :root[data-theme='light'] .search-panel input {
+            background: rgba(241,245,249,0.8);
+            color: #0f172a;
+        }
+        .md-editor {
+            border: 1px solid rgba(148,163,184,0.3);
+            border-radius: 20px;
+            padding: 0.75rem;
+            background: rgba(15,23,42,0.35);
+        }
+        .md-editor textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+        .md-editor-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .md-editor-tabs {
+            display: inline-flex;
+            gap: 0.25rem;
+            border: 1px solid rgba(148,163,184,0.3);
+            border-radius: 999px;
+            padding: 0.15rem;
+            background: rgba(15,23,42,0.4);
+        }
+        .md-editor-tabs button {
+            border: none;
+            background: transparent;
+            color: rgba(226,232,240,0.7);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+        .md-editor-tabs button.active {
+            background: rgba(15,23,42,0.85);
+            color: #f8fafc;
+        }
+        :root[data-theme='light'] .md-editor {
+            background: rgba(255,255,255,0.85);
+            border-color: rgba(148,163,184,0.4);
+        }
+        :root[data-theme='light'] .md-editor-tabs {
+            background: rgba(241,245,249,0.9);
+            border-color: rgba(148,163,184,0.5);
+        }
+        :root[data-theme='light'] .md-editor-tabs button.active {
+            background: rgba(15,23,42,0.1);
+            color: #0f172a;
+        }
+        .md-editor-preview {
+            display: none;
+            border-radius: 16px;
+            border: 1px dashed rgba(148,163,184,0.4);
+            padding: 1rem;
+            min-height: 10rem;
+            max-height: 24rem;
+            overflow-y: auto;
+        }
+        .md-editor-preview.active {
+            display: block;
+        }
+        .md-editor-body textarea.hidden {
+            display: none;
+        }
+        .fullscreen-wrapper.fullscreen-active .md-editor-preview {
+            max-height: calc(100vh - 6rem);
+            overflow-y: auto;
+        }
+        .site-logo {
+            font-size: 1.35rem;
+            font-weight: 900;
+             
+             
+            display: inline-flex;
+            align-items: center;
+            gap: 0.15rem;
+            line-height: 1;
+        }
+        .site-logo-fa {
+            font-family: 'Vazirmatn', 'Vazirmatn FD', 'IRANSans', 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-weight: 900;
+        }
+        .site-logo-en {
+            font-family: 'Impact', 'Arial Black', 'Segoe UI Black', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 900;
+        }
+        .nav-link {
+            position: relative;
+            font-size: 0.88rem;
+             
+            color: var(--link-default);
+             
+            padding-bottom: 0.25rem;
+            transition: color 0.2s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.05rem;
+            width: 100%;
+            height: 2px;
+            background: var(--link-hover);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            opacity: 0;
+        }
+        .nav-link-en {
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace !important;
+        }
+        .nav-link-fa {
+            font-family: 'Vazirmatn', 'Vazirmatn FD', 'IRANSans', 'Segoe UI', sans-serif !important;
+        }
+        .nav-link:hover {
+            color: var(--link-hover);
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+        .lang-toggle {
+            display: inline-flex;
+            border: 1px solid var(--panel-border);
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--panel-bg);
+            box-shadow: var(--panel-shadow);
+        }
+        .lang-toggle button {
+            border: none;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-muted);
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .lang-toggle button.active {
+            background: rgba(45,212,191,0.2);
+            color: var(--text-primary);
+        }
+        @media (max-width: 768px) {
+            .lang-toggle {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .lang-toggle button {
+                flex: 1;
+                text-align: center;
+            }
+        }
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 999px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .theme-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        .search-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 999px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .search-toggle img {
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+        .search-icon-light {
+            display: none;
+        }
+        :root[data-theme='light'] .search-icon-dark {
+            display: none;
+        }
+        :root[data-theme='light'] .search-icon-light {
+            display: block;
+        }
+        #primary-nav {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 120;
+            width: 100%;
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 20px rgba(2, 6, 23, 0.25);
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            overflow: visible;
+        }
+        .site-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: rgba(2, 6, 23, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.25s ease, backdrop-filter 0.25s ease;
+        }
+        .site-header.is-scrolled {
+            box-shadow: 0 14px 32px rgba(2, 6, 23, 0.38);
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+        .site-header.is-scrolled::before {
+            background: rgba(2, 6, 23, 0.22);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        :root[data-theme='light'] .site-header {
+            border-color: rgba(15, 23, 42, 0.08);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+        }
+        :root[data-theme='light'] .site-header::before {
+            background: rgba(255, 255, 255, 0.22);
+        }
+        :root[data-theme='light'] .site-header.is-scrolled {
+            border-color: rgba(15, 23, 42, 0.16);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+        }
+        :root[data-theme='light'] .site-header.is-scrolled::before {
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .header-shell {
+            min-height: var(--header-height);
+            position: relative;
+            z-index: 1;
+        }
+        #app-main {
+            padding-top: var(--header-height);
+        }
+        .mobile-menu-toggle {
+            display: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            border-radius: 999px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            box-shadow: var(--panel-shadow);
+            transition: border-color 0.2s ease, background 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .mobile-menu-toggle .bar {
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: currentColor;
+            display: block;
+            border-radius: 999px;
+            left: 50%;
+            transform-origin: center;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .mobile-menu-toggle .bar:nth-child(1) {
+            top: 35%;
+            transform: translate(-50%, -50%);
+        }
+        .mobile-menu-toggle .bar:nth-child(2) {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .mobile-menu-toggle .bar:nth-child(3) {
+            top: 65%;
+            transform: translate(-50%, -50%);
+        }
+        .mobile-menu-toggle.active .bar:nth-child(1) {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .mobile-menu-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-toggle.active .bar:nth-child(3) {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        @media (max-width: 768px) {
+            .header-shell {
+                position: relative;
+            }
+            .header-actions [data-search-open],
+            .header-actions [data-theme-toggle] {
+                display: none;
+            }
+            #primary-nav {
+                position: absolute;
+                top: calc(100% + 0.5rem);
+                right: 1rem;
+                left: auto;
+                width: min(320px, calc(100vw - 2rem));
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.65rem;
+                border-radius: 20px;
+                border: 1px solid var(--panel-border);
+                background: var(--panel-bg);
+                box-shadow: var(--panel-shadow);
+                padding: 1rem;
+                display: none;
+                opacity: 0;
+                transform: translateY(-4px);
+                z-index: 60;
+            }
+            #primary-nav .nav-link {
+                width: 100%;
+                padding: 0.4rem 0;
+                border-radius: 12px;
+                padding-inline: 0.5rem;
+            }
+            #primary-nav.open {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .mobile-nav-actions {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.5rem;
+                width: 100%;
+                border-top: 1px solid var(--panel-border);
+                padding-top: 0.75rem;
+                margin-top: 0.5rem;
+            }
+            .mobile-nav-actions .search-toggle,
+            .mobile-nav-actions .theme-toggle {
+                width: 100%;
+                height: 3rem;
+            }
+            .header-actions {
+                gap: 0.5rem;
+            }
+            .mobile-menu-toggle {
+                display: inline-flex;
+            }
+        }
+        @media (min-width: 769px) {
+            .mobile-nav-actions {
+                display: none !important;
+            }
+        }
+        .glass-panel {
+            border-radius: 24px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            box-shadow: var(--panel-shadow);
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .fullscreen-wrapper {
+            position: relative;
+        }
+        .fullscreen-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(15,23,42,0.6);
+            color: #f1f5f9;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.6rem;
+            cursor: pointer;
+            z-index: 2;
+        }
+        :root[data-theme='light'] .fullscreen-toggle {
+            background: rgba(255,255,255,0.9);
+            color: #0f172a;
+        }
+        .fullscreen-wrapper.fullscreen-active {
+            position: fixed;
+            inset: 1.5rem;
+            z-index: 1000;
+            background: var(--panel-bg);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+        }
+        .fullscreen-wrapper.fullscreen-active textarea {
+            height: calc(100vh - 6rem);
+            min-height: calc(100vh - 6rem);
+            resize: none;
+        }
+        .glass-frame {
+            border-radius: 28px;
+            padding: 2px;
+             
+            background: linear-gradient(135deg, rgba(32, 141, 127, 0.8), rgba(6, 101, 143, 0.6));
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .admin-tab {
+            border-radius: 999px;
+            border: 1px solid var(--panel-border);
+            padding: 0.5rem 1rem;
+            text-align: left;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+        .admin-tab.active {
+            background: linear-gradient(135deg, rgba(45,212,191,0.6), rgba(14,165,233,0.6));
+            color: #0f172a;
+        }
+        .animate-fade {
+            animation: fadeIn 0.35s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        pre, code {
+            direction: ltr !important;
+            text-align: left !important;
+            font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier New', monospace !important;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        :root {
+            --code-bg: #0b0e14;
+            --code-bg-alt: #131721;
+            --code-fg: #bfbdb6;
+            --code-keyword: #ffad66;
+            --code-keyword-type: #59c2ff;
+            --code-string: #b8cc52;
+            --code-number: #d2a6ff;
+            --code-comment: #5c6773;
+            --code-function: #ffd580;
+            --code-operator: #f09483;
+        }
+        :root[data-theme='light'] {
+            --code-bg: #ffffff;
+            --code-bg-alt: #f7f8fb;
+            --code-fg: #1f2430;
+            --code-keyword: #f07178;
+            --code-keyword-type: #36a3d9;
+            --code-string: #86b300;
+            --code-number: #a37acc;
+            --code-comment: #8a9199;
+            --code-function: #f29718;
+            --code-operator: #fa8d3e;
+        }
+        .code-block {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-radius: 22px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: var(--code-bg-alt);
+            box-shadow: 0 28px 60px rgba(2, 6, 23, 0.45);
+            overflow: hidden;
+            position: relative;
+        }
+        :root[data-theme='light'] .code-block {
+            background: var(--code-bg-alt);
+            border-color: rgba(15, 23, 42, 0.08);
+            box-shadow: 0 24px 45px rgba(15, 23, 42, 0.1);
+        }
+        .code-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.15rem;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+            background: var(--code-bg-alt);
+        }
+        :root[data-theme='light'] .code-toolbar {
+            border-color: rgba(15, 23, 42, 0.08);
+        }
+        .code-lang {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.18);
+            color: var(--text-primary);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+        }
+        :root[data-theme='light'] .code-lang {
+            background: rgba(15, 23, 42, 0.08);
+            color: #0f172a;
+            border-color: rgba(15, 23, 42, 0.12);
+        }
+        .code-copy-btn {
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .code-copy-btn:hover {
+            border-color: rgba(94, 234, 212, 0.6);
+            color: rgba(94, 234, 212, 0.9);
+        }
+        .code-copy-btn.copied {
+            border-color: rgba(16, 185, 129, 0.7);
+            color: rgba(16, 185, 129, 0.95);
+        }
+        .code-body {
+            position: relative;
+            --code-collapsed-height: 240px;
+            max-height: var(--code-collapsed-height);
+            overflow-x: auto;
+            overflow-y: hidden;
+            border-radius: 20px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .code-body.expanded {
+            max-height: none;
+        }
+        .code-body.has-overflow:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 4rem;
+            background: linear-gradient(180deg, rgba(16, 18, 30, 0), rgba(16, 18, 30, 0.95));
+            pointer-events: none;
+        }
+        :root[data-theme='light'] .code-body.has-overflow:not(.expanded)::after {
+            background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.92));
+        }
+        .code-body pre {
+            margin: 0;
+            border-radius: 18px;
+            width: 100%;
+            background: var(--code-bg);
+            border: none;
+            padding: 1.1rem 1.4rem;
+            box-sizing: border-box;
+            overflow-x: auto;
+            overflow-y: hidden;
+            color: var(--code-fg);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .code-body pre code {
+            display: block;
+            background: transparent;
+            padding: 0;
+            white-space: pre;
+            width: 100%;
+}
+        .code-toggle {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem 0.5rem;
+            margin: 0.35rem auto 1.1rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .share-pill {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .share-pill:hover {
+            border-color: rgba(45, 212, 191, 0.6);
+            color: rgba(94, 234, 212, 0.9);
+        }
+        .share-icon {
+            width: 1.35rem;
+            height: 1.35rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .share-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        .share-icon-img-light {
+            display: none;
+        }
+        .share-icon-img-dark {
+            display: block;
+        }
+        :root[data-theme='light'] .share-icon-img-dark {
+            display: none;
+        }
+        :root[data-theme='light'] .share-icon-img-light {
+            display: block;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        .code-toggle:hover {
+            color: var(--text-primary);
+        }
+        .chroma {
+            color: var(--code-fg);
+            background-color: var(--code-bg);
+        }
+        .chroma .line,
+        .chroma .cl {
+            display: block !important;
+            width: 100%;
+            min-width: 100%;
+        }
+        .chroma .k,
+        .chroma .kc,
+        .chroma .kd,
+        .chroma .kn,
+        .chroma .kp,
+        .chroma .kr { color: var(--code-keyword); }
+        .chroma .kt { color: var(--code-keyword-type); }
+        .chroma .na,
+        .chroma .nb,
+        .chroma .bp,
+        .chroma .nc,
+        .chroma .nd,
+        .chroma .ni,
+        .chroma .ne,
+        .chroma .nf,
+        .chroma .nl,
+        .chroma .nn,
+        .chroma .no,
+        .chroma .nt,
+        .chroma .nv,
+        .chroma .vc,
+        .chroma .vg,
+        .chroma .vi { color: var(--code-function); }
+        .chroma .s,
+        .chroma .sa,
+        .chroma .sb,
+        .chroma .sc,
+        .chroma .dl,
+        .chroma .s2,
+        .chroma .sh,
+        .chroma .si,
+        .chroma .sx,
+        .chroma .s1,
+        .chroma .sd,
+        .chroma .se,
+        .chroma .sr,
+        .chroma .ss { color: var(--code-string); }
+        .chroma .m,
+        .chroma .mb,
+        .chroma .mf,
+        .chroma .mh,
+        .chroma .mi,
+        .chroma .il,
+        .chroma .mo { color: var(--code-number); }
+        .chroma .o,
+        .chroma .ow,
+        .chroma .p { color: var(--code-operator); }
+        .chroma .c,
+        .chroma .ch,
+        .chroma .cm,
+        .chroma .c1,
+        .chroma .cs,
+        .chroma .cp,
+        .chroma .cpf { color: var(--code-comment); font-style: italic; }
+        .chroma .gd { color: #ff6e6e; }
+        .chroma .gi { color: #72d572; }
+        .chroma .go { color: #9399b2; }
+        .chroma .gp { color: #6c7086; }
+    </style>
+    <script>
+        (function() {
+            try {
+                var root = document.documentElement;
+                var stored = localStorage.getItem('goth-theme');
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                var theme = stored || prefersDark || 'dark';
+                root.dataset.theme = theme;
+                root.style.colorScheme = theme;
+                root.classList.toggle('dark', theme === 'dark');
+            } catch (err) {
+                var fallbackRoot = document.documentElement;
+                fallbackRoot.dataset.theme = 'dark';
+                fallbackRoot.style.colorScheme = 'dark';
+                fallbackRoot.classList.add('dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="/static/css/tailwind.css">
+    <script defer src="/static/js/htmx.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.documentElement;
+            const body = document.body;
+            const showMoreLabel = body?.dataset.showMore || 'Show more';
+            const showLessLabel = body?.dataset.showLess || 'Show less';
+            const loader = document.getElementById('page-loader');
+            const loaderDigits = document.querySelector('[data-loader-digits]');
+            let loaderFailsafe;
+            const hideLoader = () => {
+                if (!loader) return;
+                loader.classList.add('page-loader--hidden');
+                body?.classList.remove('overflow-hidden');
+                if (loaderFailsafe) {
+                    clearTimeout(loaderFailsafe);
+                    loaderFailsafe = undefined;
+                }
+            };
+            const showLoader = () => {
+                if (!loader) return;
+                loader.classList.remove('page-loader--hidden');
+                body?.classList.add('overflow-hidden');
+                if (loaderFailsafe) {
+                    clearTimeout(loaderFailsafe);
+                }
+                loaderFailsafe = setTimeout(() => hideLoader(), 5000);
+            };
+            const initLoaderDigits = () => {
+                if (!loaderDigits) return;
+                const count = Number(loaderDigits.dataset.digitCount || 48);
+                const digits = [];
+                loaderDigits.innerHTML = '';
+                const frag = document.createDocumentFragment();
+                for (let i = 0; i < count; i += 1) {
+                    const digit = document.createElement('span');
+                    digit.className = 'loader-digit';
+                    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+                    digit.style.setProperty('--loader-digit-index', i.toString());
+                    frag.appendChild(digit);
+                    digits.push(digit);
+                }
+                loaderDigits.appendChild(frag);
+                setInterval(() => {
+                    digits.forEach((digit) => {
+                        if (Math.random() > 0.55) return;
+                        digit.textContent = digit.textContent === '1' ? '0' : '1';
+                    });
+                }, 140);
+            };
+            initLoaderDigits();
+            window.addEventListener('load', () => {
+                setTimeout(() => hideLoader(), 150);
+            });
+            window.addEventListener('pageshow', () => hideLoader());
+            window.addEventListener('popstate', () => hideLoader());
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    hideLoader();
+                }
+            });
+            window.addEventListener('focus', () => hideLoader());
+            const themeButtons = document.querySelectorAll('[data-theme-toggle]');
+            const setButtonIcon = (mode) => {
+                const icon = mode === 'dark'
+                    ? '<span aria-hidden="true">🌙</span>'
+                    : '<span aria-hidden="true">🌞</span>';
+                const label = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+                themeButtons.forEach(btn => {
+                    btn.innerHTML = icon;
+                    btn.setAttribute('aria-label', label);
+                    btn.title = label;
+                });
+            };
+            const applyTheme = (mode) => {
+                const next = mode === 'light' ? 'light' : 'dark';
+                root.dataset.theme = next;
+                body.dataset.theme = next;
+                root.style.colorScheme = next;
+                root.classList.toggle('dark', next === 'dark');
+                localStorage.setItem('goth-theme', next);
+                setButtonIcon(next);
+            };
+            applyTheme(root.dataset.theme || 'dark');
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+                });
+            });
+
+            const mapLanguageName = (lang) => {
+                if (!lang) {
+                    return '';
+                }
+                const map = {
+                    javascript: "JS",
+                    js: "JS",
+                    typescript: "TS",
+                    ts: "TS",
+                    node: "NODE",
+                    deno: "DENO",
+                    plaintext: "TXT",
+                    text: "TXT",
+                    txt: "TXT",
+                    shell: "BASH",
+                    bash: "BASH",
+                    sh: "BASH",
+                    zsh: "ZSH",
+                    fish: "FISH",
+                    html: "HTML",
+                    htm: "HTML",
+                    css: "CSS",
+                    scss: "SCSS",
+                    sass: "SASS",
+                    json: "JSON",
+                    jsonc: "JSONC",
+                    yaml: "YAML",
+                    yml: "YAML",
+                    toml: "TOML",
+                    ini: "INI",
+                    xml: "XML",
+                    go: "GO",
+                    golang: "GO",
+                    rust: "RUST",
+                    rs: "RUST",
+                    python: "PY",
+                    py: "PY",
+                    ruby: "RUBY",
+                    rb: "RUBY",
+                    php: "PHP",
+                    perl: "PERL",
+                    pl: "PERL",
+                    lua: "LUA",
+                    r: "R",
+                    java: "JAVA",
+                    groovy: "GROOVY",
+                    kotlin: "KOTLIN",
+                    kt: "KOTLIN",
+                    kts: "KOTLIN",
+                    scala: "SCALA",
+                    c: "C",
+                    h: "C HEADER",
+                    cpp: "C++",
+                    cc: "C++",
+                    cxx: "C++",
+                    hpp: "C++ HEADER",
+                    hh: "C++ HEADER",
+                    objc: "OBJ-C",
+                    m: "OBJ-C",
+                    mm: "OBJ-C++",
+                    sql: "SQL",
+                    mysql: "MYSQL",
+                    postgres: "PG",
+                    nosql: "NOSQL",
+                    makefile: "MAKEFILE",
+                    dockerfile: "DOCKER",
+                    docker: "DOCKER",
+                    nginx: "NGINX",
+                    apache: "APACHE",
+                    powershell: "PS",
+                    markdown: "MD",
+                    md: "MD",
+                    javascriptreact: "JSX",
+                    jsx: "JSX",
+                    tsx: "TSX",
+                };
+                const key = lang.toLowerCase();
+                return (map[key] || key || "CODE").toUpperCase();
+            };
+
+            const languageLabel = (codeEl) => {
+                const datasetLang = codeEl?.dataset.codeLang || codeEl?.dataset.lang || codeEl?.getAttribute('data-lang');
+                const wrapperLang = codeEl?.closest('[data-code-lang]')?.dataset.codeLang;
+                const normalized = datasetLang || wrapperLang;
+                if (normalized) {
+                    return mapLanguageName(normalized);
+                }
+                const classes = (codeEl?.className || '').split(/\s+/);
+                for (const cls of classes) {
+                    const match = cls.match(/language-([\w+-]+)/i);
+                    if (match) {
+                        return mapLanguageName(match[1]);
+                    }
+                }
+                return 'CODE';
+            };
+
+            const setToggleLabel = (btn, expanded) => {
+                if (!btn) return;
+                btn.innerHTML = expanded
+                    ? `<span>${showLessLabel}</span><span aria-hidden="true">↑</span>`
+                    : `<span>${showMoreLabel}</span><span aria-hidden="true">↓</span>`;
+            };
+
+            const evaluateCodeBody = (bodyEl, preserveState = true) => {
+                if (!bodyEl) return;
+                const pre = bodyEl.querySelector('pre');
+                if (!pre) return;
+                const toggleBtn = bodyEl.nextElementSibling && bodyEl.nextElementSibling.classList.contains('code-toggle')
+                    ? bodyEl.nextElementSibling
+                    : null;
+                const collapsedHeight = parseFloat(bodyEl.dataset.collapsedHeight || '0') || 240;
+                let expanded = bodyEl.classList.contains('expanded');
+                if (!preserveState) {
+                    expanded = false;
+                    bodyEl.classList.remove('expanded');
+                }
+                const hasOverflow = pre.scrollHeight > collapsedHeight + 8;
+                bodyEl.classList.toggle('has-overflow', hasOverflow);
+                if (!toggleBtn) {
+                    return;
+                }
+                if (!hasOverflow) {
+                    bodyEl.classList.add('expanded');
+                    toggleBtn.hidden = true;
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                    setToggleLabel(toggleBtn, true);
+                    return;
+                }
+                toggleBtn.hidden = false;
+                bodyEl.classList.toggle('expanded', expanded);
+                toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                setToggleLabel(toggleBtn, expanded);
+            };
+
+            const updateAllCodeBodies = (preserveState = true) => {
+                document.querySelectorAll('[data-code-body]').forEach(bodyEl => evaluateCodeBody(bodyEl, preserveState));
+            };
+
+            let codeResizeBound = false;
+            const bindCodeResize = () => {
+                if (codeResizeBound) {
+                    return;
+                }
+                codeResizeBound = true;
+                window.addEventListener('resize', () => updateAllCodeBodies(true));
+            };
+
+            const initCodeBlocks = (scope) => {
+                const rootEl = scope && scope.querySelectorAll ? scope : document;
+                rootEl.querySelectorAll('pre.chroma').forEach(pre => {
+                    if (pre.dataset.codeEnhanced === 'true') {
+                        return;
+                    }
+                    const code = pre.querySelector('code');
+                    if (!code) {
+                        pre.dataset.codeEnhanced = 'true';
+                        return;
+                    }
+                    pre.dataset.codeEnhanced = 'true';
+                    const host = pre.closest('[data-code-lang]');
+                    const langValue = host?.dataset.codeLang || code.dataset.codeLang || code.dataset.lang || code.getAttribute('data-lang') || '';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'code-block';
+                    if (langValue) {
+                        wrapper.dataset.codeLang = langValue;
+                    }
+                    const toolbar = document.createElement('div');
+                    toolbar.className = 'code-toolbar';
+                    const langBadge = document.createElement('span');
+                    langBadge.className = 'code-lang';
+                    langBadge.textContent = languageLabel(code) || mapLanguageName(langValue);
+                    const copyBtn = document.createElement('button');
+                    copyBtn.type = 'button';
+                    copyBtn.className = 'code-copy-btn';
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.addEventListener('click', async () => {
+                        try {
+                            await navigator.clipboard.writeText(code.innerText);
+                            copyBtn.classList.add('copied');
+                            copyBtn.textContent = 'Copied';
+                            setTimeout(() => {
+                                copyBtn.classList.remove('copied');
+                                copyBtn.textContent = 'Copy';
+                            }, 1500);
+                        } catch (err) {
+                            copyBtn.textContent = 'Error';
+                            setTimeout(() => (copyBtn.textContent = 'Copy'), 1500);
+                        }
+                    });
+                    toolbar.append(langBadge, copyBtn);
+                    const bodyEl = document.createElement('div');
+                    bodyEl.className = 'code-body';
+                    bodyEl.dataset.codeBody = 'true';
+                    const collapsedHeight = parseFloat(getComputedStyle(bodyEl).getPropertyValue('--code-collapsed-height')) || 240;
+                    bodyEl.dataset.collapsedHeight = String(collapsedHeight);
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.type = 'button';
+                    toggleBtn.className = 'code-toggle';
+                    setToggleLabel(toggleBtn, false);
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    toggleBtn.hidden = true;
+                    const parent = host?.parentNode || pre.parentNode;
+                    if (host) {
+                        parent.insertBefore(wrapper, host);
+                    } else {
+                        parent.insertBefore(wrapper, pre);
+                    }
+                    bodyEl.appendChild(pre);
+                    wrapper.append(toolbar, bodyEl, toggleBtn);
+                    if (host) {
+                        host.remove();
+                    }
+                    toggleBtn.addEventListener('click', () => {
+                        const expanded = !bodyEl.classList.contains('expanded');
+                        bodyEl.classList.toggle('expanded', expanded);
+                        setToggleLabel(toggleBtn, expanded);
+                        toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                    });
+                    evaluateCodeBody(bodyEl, false);
+                    bindCodeResize();
+                });
+            };
+
+            document.body.addEventListener('captcha-refresh', (event) => {
+                const detail = event.detail || {};
+                const promptEl = document.querySelector('[data-comment-captcha-prompt]');
+                const tokenEl = document.querySelector('[data-comment-captcha-token]');
+                const answerEl = document.querySelector('[data-comment-captcha-answer]');
+                if (promptEl && detail.prompt) {
+                    promptEl.textContent = detail.prompt;
+                }
+                if (tokenEl && detail.token) {
+                    tokenEl.value = detail.token;
+                }
+                if (answerEl) {
+                    answerEl.value = '';
+                }
+            });
+
+            const updateBodyOverflow = () => {
+                const activeWrapper = document.querySelector('[data-fullscreen-wrapper].fullscreen-active');
+                document.body.classList.toggle('overflow-hidden', !!activeWrapper);
+            };
+
+            const initFullscreenToggles = (scope) => {
+                const root = scope && scope.querySelectorAll ? scope : document;
+                root.querySelectorAll('[data-fullscreen-wrapper]').forEach(wrapper => {
+                    if (wrapper.dataset.fullscreenInit === 'true') {
+                        return;
+                    }
+                    const toggle = wrapper.querySelector('[data-fullscreen-toggle]');
+                    if (!toggle) {
+                        return;
+                    }
+                    wrapper.dataset.fullscreenInit = 'true';
+                    toggle.textContent = '⛶';
+                    toggle.addEventListener('click', () => {
+                        const active = wrapper.classList.toggle('fullscreen-active');
+                        toggle.textContent = active ? '×' : '⛶';
+                        updateBodyOverflow();
+                    });
+                });
+            };
+
+            const initMdEditors = (scope) => {
+                const root = scope && scope.querySelectorAll ? scope : document;
+                root.querySelectorAll('[data-md-editor]').forEach(editor => {
+                    if (editor.dataset.mdInit === 'true') {
+                        return;
+                    }
+                    const textarea = editor.querySelector('textarea');
+                    const preview = editor.querySelector('[data-md-preview]');
+                    const writeBtn = editor.querySelector('[data-editor-mode="write"]');
+                    const previewBtn = editor.querySelector('[data-editor-mode="preview"]');
+                    if (!textarea || !preview || !writeBtn || !previewBtn) {
+                        return;
+                    }
+                    editor.dataset.mdInit = 'true';
+                    let mode = 'write';
+                    const setMode = (nextMode) => {
+                        mode = nextMode;
+                        if (mode === 'write') {
+                            textarea.classList.remove('hidden');
+                            preview.classList.remove('active');
+                            writeBtn.classList.add('active');
+                            previewBtn.classList.remove('active');
+                        } else {
+                            textarea.classList.add('hidden');
+                            preview.classList.add('active');
+                            writeBtn.classList.remove('active');
+                            previewBtn.classList.add('active');
+                            renderPreview();
+                        }
+                    };
+                    const renderPreview = async () => {
+                        preview.innerHTML = '<p class="text-xs text-slate-400">Rendering preview…</p>';
+                        try {
+                            const form = new URLSearchParams();
+                            form.append('body', textarea.value);
+                            form.append('lang', editor.dataset.editorLang || 'en');
+                            const response = await fetch('/admin/preview', {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                                body: form.toString(),
+                            });
+                            if (!response.ok) {
+                                throw new Error(await response.text());
+                            }
+                            const html = await response.text();
+                            preview.innerHTML = html;
+                        } catch (err) {
+                            preview.innerHTML = '<p class="text-xs text-rose-500">Preview error: ' + (err.message || 'Unknown error') + '</p>';
+                        }
+                    };
+                    writeBtn.addEventListener('click', () => setMode('write'));
+                    previewBtn.addEventListener('click', () => setMode('preview'));
+                    setMode('write');
+                });
+            };
+
+            const initSocialEditors = (scope) => {
+                const root = scope && scope.querySelectorAll ? scope : document;
+                root.querySelectorAll('[data-social-editor]').forEach(editor => {
+                    if (editor.dataset.socialInit === 'true') {
+                        return;
+                    }
+                    editor.dataset.socialInit = 'true';
+                    const list = editor.querySelector('[data-social-list]');
+                    const addBtn = editor.querySelector('[data-social-add]');
+                    const hidden = editor.querySelector('input[name="social_links"]');
+                    let links = [];
+                    const decodeJSON = (raw) => {
+                        if (!raw) return '[]';
+                        return raw.replace(/&quot;/g, '"').replace(/&#34;/g, '"');
+                    };
+                    try {
+                        const raw = decodeJSON(hidden.value);
+                        links = JSON.parse(raw);
+                        if (!Array.isArray(links)) {
+                            links = [];
+                        }
+                    } catch {
+                        links = [];
+                    }
+                    const updateHidden = () => {
+                        hidden.value = JSON.stringify(links);
+                    };
+                    let dragIndex = null;
+                    let ghost = null;
+                    const render = () => {
+                        list.innerHTML = '';
+                        links.forEach((link, idx) => {
+                            const row = document.createElement('div');
+                            row.className = 'flex flex-wrap gap-2 items-center rounded-xl border border-transparent px-1 py-1 transition';
+                            row.draggable = true;
+                            row.dataset.index = idx.toString();
+                            row.addEventListener('dragstart', (ev) => {
+                                dragIndex = idx;
+                                ev.dataTransfer.effectAllowed = 'move';
+                                ev.dataTransfer.setData('text/plain', idx.toString());
+                                row.classList.add('opacity-60', 'scale-[0.98]');
+                                ghost = row.cloneNode(true);
+                                ghost.style.opacity = '0.7';
+                                ghost.style.transform = 'scale(0.98)';
+                                ghost.style.position = 'absolute';
+                                ghost.style.top = '-1000px';
+                                document.body.appendChild(ghost);
+                                ev.dataTransfer.setDragImage(ghost, 20, 20);
+                            });
+                            row.addEventListener('dragend', () => {
+                                dragIndex = null;
+                                row.classList.remove('opacity-60', 'scale-[0.98]');
+                                row.classList.remove('ring', 'ring-teal-300/60', 'bg-teal-50/60', 'dark:bg-teal-500/10');
+                                if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+                                ghost = null;
+                            });
+                            row.addEventListener('dragover', (ev) => {
+                                ev.preventDefault();
+                                row.classList.add('ring', 'ring-teal-300/60', 'bg-teal-50/60', 'dark:bg-teal-500/10');
+                            });
+                            row.addEventListener('dragleave', () => {
+                                row.classList.remove('ring', 'ring-teal-300/60', 'bg-teal-50/60', 'dark:bg-teal-500/10');
+                            });
+                            row.addEventListener('drop', (ev) => {
+                                ev.preventDefault();
+                                row.classList.remove('ring', 'ring-teal-300/60', 'bg-teal-50/60', 'dark:bg-teal-500/10');
+                                if (dragIndex === null) return;
+                                const from = dragIndex;
+                                const to = Number(row.dataset.index || idx);
+                                if (Number.isNaN(from) || Number.isNaN(to) || from === to) return;
+                                const [moved] = links.splice(from, 1);
+                                links.splice(to, 0, moved);
+                                updateHidden();
+                                render();
+                            });
+                            const dragHandle = document.createElement('span');
+                            dragHandle.textContent = '↕';
+                            dragHandle.title = 'Drag to reorder';
+                            dragHandle.className = 'w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 text-xs cursor-grab select-none';
+                            dragHandle.title = 'Drag to reorder';
+                            dragHandle.addEventListener('mousedown', () => {
+                                dragHandle.classList.add('cursor-grabbing');
+                            });
+                            dragHandle.addEventListener('mouseup', () => {
+                                dragHandle.classList.remove('cursor-grabbing');
+                            });
+                            row.append(dragHandle);
+                            const labelInput = document.createElement('input');
+                            labelInput.placeholder = 'Label';
+                            labelInput.className = 'flex-1 rounded-xl border border-slate-300/60 dark:border-white/20 bg-transparent px-3 py-1 text-xs';
+                            labelInput.value = link.label || '';
+                            labelInput.addEventListener('input', () => {
+                                links[idx].label = labelInput.value;
+                                updateHidden();
+                            });
+                            const iconLightInput = document.createElement('input');
+                            iconLightInput.placeholder = 'Light icon / image URL';
+                            iconLightInput.className = 'flex-1 rounded-xl border border-slate-300/60 dark:border-white/20 bg-transparent px-3 py-1 text-xs';
+                            iconLightInput.value = link.icon_light || link.icon || '';
+                            iconLightInput.addEventListener('input', () => {
+                                links[idx].icon_light = iconLightInput.value;
+                                updateHidden();
+                            });
+                            const iconDarkInput = document.createElement('input');
+                            iconDarkInput.placeholder = 'Dark icon / image URL';
+                            iconDarkInput.className = 'flex-1 rounded-xl border border-slate-300/60 dark:border-white/20 bg-transparent px-3 py-1 text-xs';
+                            iconDarkInput.value = link.icon_dark || '';
+                            iconDarkInput.addEventListener('input', () => {
+                                links[idx].icon_dark = iconDarkInput.value;
+                                updateHidden();
+                            });
+                            const fallbackInput = document.createElement('input');
+                            fallbackInput.placeholder = 'Emoji fallback';
+                            fallbackInput.className = 'w-24 rounded-xl border border-slate-300/60 dark:border-white/20 bg-transparent px-3 py-1 text-xs text-center';
+                            fallbackInput.value = link.icon || '';
+                            fallbackInput.addEventListener('input', () => {
+                                links[idx].icon = fallbackInput.value;
+                                updateHidden();
+                            });
+                            const urlInput = document.createElement('input');
+                            urlInput.placeholder = 'https://';
+                            urlInput.className = 'flex-1 rounded-xl border border-slate-300/60 dark:border-white/20 bg-transparent px-3 py-1 text-xs';
+                            urlInput.value = link.url || '';
+                            urlInput.addEventListener('input', () => {
+                                links[idx].url = urlInput.value;
+                                updateHidden();
+                            });
+                            const removeBtn = document.createElement('button');
+                            removeBtn.type = 'button';
+                            removeBtn.textContent = '×';
+                            removeBtn.className = 'w-7 h-7 rounded-full bg-rose-500/20 text-rose-500 text-xs';
+                            removeBtn.addEventListener('click', () => {
+                                links.splice(idx, 1);
+                                updateHidden();
+                                render();
+                            });
+                            row.append(labelInput, iconLightInput, iconDarkInput, fallbackInput, urlInput, removeBtn);
+                            list.appendChild(row);
+                        });
+                        updateHidden();
+                    };
+                    addBtn.addEventListener('click', () => {
+                        links.push({ label: '', url: '', icon_light: '', icon_dark: '', icon: '' });
+                        render();
+                    });
+                    render();
+                });
+            };
+
+            initFullscreenToggles(document);
+            initMdEditors(document);
+            initSocialEditors(document);
+            initCodeBlocks(document);
+            document.body.addEventListener('htmx:afterSwap', (event) => {
+                const scope = event.target || document;
+                initFullscreenToggles(scope);
+                initMdEditors(scope);
+                initSocialEditors(scope);
+                initCodeBlocks(scope);
+                updateAllCodeBodies(true);
+                hideLoader();
+            });
+            document.body.addEventListener('htmx:beforeRequest', () => showLoader());
+            document.body.addEventListener('htmx:responseError', () => hideLoader());
+
+            const nav = document.getElementById('primary-nav');
+            const mobileToggle = document.querySelector('[data-mobile-toggle]');
+            const closeMenu = () => {
+                nav?.classList.remove('open');
+                mobileToggle?.classList.remove('active');
+                mobileToggle?.setAttribute('aria-expanded', 'false');
+            };
+            mobileToggle?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nav?.classList.toggle('open');
+                const expanded = nav?.classList.contains('open');
+                mobileToggle.classList.toggle('active', !!expanded);
+                mobileToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            });
+            document.addEventListener('click', (e) => {
+                if (!nav || !nav.classList.contains('open')) {
+                    return;
+                }
+                if (!(nav.contains(e.target) || mobileToggle?.contains(e.target))) {
+                    closeMenu();
+                }
+            });
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    closeMenu();
+                }
+                updateAllCodeBodies(true);
+            });
+            nav?.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            const header = document.getElementById('site-header');
+            const syncHeaderState = () => {
+                if (!header) return;
+                const atTop = window.scrollY <= 2;
+                header.classList.toggle('is-scrolled', !atTop);
+            };
+            syncHeaderState();
+            window.addEventListener('scroll', syncHeaderState, { passive: true });
+
+            const shouldHandleNavigation = (link) => {
+                if (!link) return false;
+                if (link.target && link.target !== '_self') return false;
+                if (link.hasAttribute('download') || link.getAttribute('rel') === 'external') return false;
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript:')) return false;
+                const url = new URL(link.href, window.location.href);
+                return url.origin === window.location.origin;
+            };
+
+            document.addEventListener('click', (event) => {
+                const link = event.target.closest('a');
+                if (!shouldHandleNavigation(link)) {
+                    return;
+                }
+                showLoader();
+                event.preventDefault();
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 50);
+            }, true);
+
+            document.addEventListener('submit', (event) => {
+                const form = event.target;
+                if (!(form instanceof HTMLFormElement)) {
+                    return;
+                }
+                if (form.target && form.target !== '_self') {
+                    return;
+                }
+                showLoader();
+            }, true);
+
+
+            const searchOverlay = document.getElementById('search-overlay');
+            const searchOpenBtns = document.querySelectorAll('[data-search-open]');
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            const closeSearch = () => {
+                searchOverlay?.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            };
+            const openSearch = () => {
+                closeMenu();
+                searchOverlay?.classList.add('active');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => searchInput?.focus(), 50);
+            };
+            searchOpenBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openSearch();
+                });
+            });
+            searchOverlay?.addEventListener('click', (e) => {
+                if (e.target === searchOverlay) {
+                    closeSearch();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && searchOverlay?.classList.contains('active')) {
+                    closeSearch();
+                }
+                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    openSearch();
+                }
+            });
+            let searchTimer;
+            const renderResults = (items) => {
+                if (!items || items.length === 0) {
+                    searchResults.innerHTML = `<p class="text-sm text-slate-400 dark:text-slate-500 py-3">No results found.</p>`;
+                    return;
+                }
+                searchResults.innerHTML = items.map(item => {
+                    const date = item.date ? `<span class="text-[0.7rem] opacity-60">${item.date}</span>` : '';
+                    return `<a class="search-result-item" href="${item.url}">
+                        <div class="flex items-center justify-between">
+                            <p class="font-semibold">${item.title}</p>
+                            ${date}
+                        </div>
+                        <p class="text-xs opacity-70">${item.description || ''}</p>
+                    </a>`;
+                }).join('');
+            };
+            searchInput?.addEventListener('input', () => {
+                const q = searchInput.value.trim();
+                clearTimeout(searchTimer);
+                if (q.length < 2) {
+                    searchResults.innerHTML = '';
+                    return;
+                }
+                searchTimer = setTimeout(async () => {
+                    try {
+                        const res = await fetch(`/search?q=${encodeURIComponent(q)}`);
+                        if (!res.ok) {
+                            throw new Error('search failed');
+                        }
+                        const data = await res.json();
+                        renderResults(data);
+                    } catch (err) {
+                        searchResults.innerHTML = '<p class="text-sm text-rose-500 py-3">Search error.</p>';
+                    }
+                }, 250);
+            });
+        });
+    </script>
+</head>
+<body class="font-english overflow-x-hidden" data-theme="dark" data-lang="en" data-show-more="Show more" data-show-less="Show less">
+    <div class="min-h-screen flex flex-col">
+        <div id="page-loader" class="page-loader" aria-hidden="true">
+            <div class="loader-core">
+                <div class="loader-title">DrunkLeen Blog</div>
+                <div class="loader-binary" data-loader-digits data-digit-count="48"></div>
+            </div>
+        </div>
+        <header id="site-header" class="site-header w-full">
+            <div class="header-shell max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-2">
+                <a href="/" class="site-logo site-logo-en text-teal-600 dark:text-teal-200">DrunkLeen</a>
+                <nav id="primary-nav" class="flex flex-wrap items-center gap-4 text-sm pt-2">
+                    <a href="/" class="nav-link nav-link-en">Home</a>
+                    
+                    <a href="/about" class="nav-link nav-link-en">About</a>
+                    
+                    <a href="/projects" class="nav-link nav-link-en">Projects</a>
+                    
+                    <a href="/support" class="nav-link nav-link-en">Support</a>
+                    
+
+                    <div class="mobile-nav-actions" aria-label="Quick actions">
+                    <button type="button" class="search-toggle" data-search-open aria-label="Search">
+                        <img src="/static/img/icons/magnifier-dark.svg" alt="" class="search-icon-dark">
+                        <img src="/static/img/icons/magnifier-light.svg" alt="" class="search-icon-light">
+                    </button>
+                        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
+                    </div>
+                </nav>
+                <div class="header-actions flex items-center gap-3">
+                    <button type="button" class="mobile-menu-toggle" data-mobile-toggle aria-label="Toggle navigation" aria-expanded="false">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                    <button type="button" class="search-toggle" data-search-open aria-label="Search">
+                        <img src="/static/img/icons/magnifier-dark.svg" alt="" class="search-icon-dark">
+                        <img src="/static/img/icons/magnifier-light.svg" alt="" class="search-icon-light">
+                    </button>
+                    <form method="post" action="/preferences/language" class="lang-toggle" aria-label="Toggle language">
+                        <input type="hidden" name="redirect" value="/">
+                        <button type="submit" name="lang" value="en" class="active" aria-pressed="true">EN</button>
+                        <button type="submit" name="lang" value="fa" class="" aria-pressed="false">FA</button>
+                    </form>
+                    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
+                </div>
+            </div>
+        </header>
+
+        <div id="app-main">
+            <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-10 flex flex-col lg:flex-row gap-8">
+                <section class="flex-1">
+                    
+<div class="space-y-6">
+    <div class="glass-panel p-6 md:p-8 space-y-4 overflow-hidden relative">
+        <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_rgba(45,212,191,0.15),_transparent_55%)] opacity-80"></div>
+        <div class="absolute -right-16 -bottom-24 w-72 h-72 bg-gradient-to-br from-cyan-400/30 to-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative space-y-3">
+            <p class="text-xs uppercase tracking-[0.4em] text-teal-600 dark:text-teal-300"></p>
+            <h1 class="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white leading-tight">I write here to offload some RAM from my brain.</h1>
+            <p class="text-slate-600 dark:text-slate-200 text-base max-w-2xl">DrunkLeen</p>
+        </div>
+    </div>
+    <div class="grid gap-6">
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>25 Apr 2026</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#privacy</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#data-ownership</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#book</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/this-is-for-everyone-when-the-web%27s-creator-talks-about-his-dream">This Is for Everyone — When the Web&#39;s Creator Talks About His Dream</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">Tim Berners-Lee invented the web, refused to patent it, and gave it to everyone. Now he&#39;s watching what it became — and he&#39;s worried. This is an honest look at his book: what he gets right, where his idealism falls short, and why every developer should read it anyway.</p>
+            <div>
+                <a href="/posts/this-is-for-everyone-when-the-web%27s-creator-talks-about-his-dream" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>28 Dec 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#sysadmin</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#linux</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/linux-kernels-when-the-names-multiply-adbd-meaning-gets-lost">Linux kernels: when the names multiply and the meaning gets lost</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">This post breaks down the different Linux kernel variants—Mainline, LTS, Zen, Hardened, and WSL2—and explains why they are often misunderstood. Instead of treating them as interchangeable options, it shows how each kernel is designed for a specific environment and use case, and why choosing the right one depends on where and how Linux is actually running.</p>
+            <div>
+                <a href="/posts/linux-kernels-when-the-names-multiply-adbd-meaning-gets-lost" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>21 Dec 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#programming</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#rust</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#error-handling</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#unsafe-rust</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/unsafe-rust-starts-where-rust-no-longer-guarantees-safety">Unsafe Rust starts where Rust no longer guarantees safety</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">This article explains what unsafe really means in Rust and why it exists.
+unsafe does not turn safety off; it shifts responsibility from the compiler to the programmer. By looking at real code examples, we see how raw pointers work, what Undefined Behavior is, and why it is far more dangerous than a simple panic. Finally, the article shows how unsafe should be used correctly: kept small, controlled, and hidden behind safe abstractions, with clear invariants that make the rest of the code safe to use.</p>
+            <div>
+                <a href="/posts/unsafe-rust-starts-where-rust-no-longer-guarantees-safety" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>10 Dec 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#linux</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#programming</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/my-own-smallest-linux-ever-made">Building My Smallest Personal Linux (from Kernel to Lua)</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">In this project I build a tiny 64-bit Linux system from scratch.
+First, I use tinyconfig plus a few manual tweaks to build a minimal x86_64 kernel and boot it in QEMU until I hit the classic no working init found error.
+Then I write a very small init in Rust &#43; assembly (no std, no libc) that talks directly to the kernel via system calls and runs as PID 1.
+Finally, I statically compile Lua, bundle it together with my init into an initramfs, and use the kernel’s own tooling to create a bootable ISO that can run Lua inside this tiny Linux world. The goal is not a daily-driver distro, but to build the smallest Linux system that I actually understand from the inside out.</p>
+            <div>
+                <a href="/posts/my-own-smallest-linux-ever-made" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>04 Dec 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#privacy</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#data-ownership</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/when-the-desktop-becomes-a-product">When the Desktop Becomes a Product: Microsoft, Valve, and the Quiet Battle for User Freedom</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">In this post, we examine the growing divide between Microsoft’s increasingly restrictive Windows ecosystem and Valve’s open, user-focused approach with Linux and SteamOS. We explain how Windows is turning core tools into monetized, cloud-dependent products, while Valve invests in open technologies that give users freedom and control. We highlight how Linux is rising not just because it’s improving, but because the alternatives are becoming more limiting. Ultimately, the post frames the future of the desktop as a choice between control and freedom.</p>
+            <div>
+                <a href="/posts/when-the-desktop-becomes-a-product" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>03 Dec 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#rust</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#programming</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#error-handling</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#tokio</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#async</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/rust-async-error-handling-2">Error Management in async Rust — from practical experience to architectural depth</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">A small async Rust project shows how to run multiple HTTP requests in parallel, apply timeouts, isolate panics, and clearly classify errors. The focus is not just speed, but building predictable, meaningful concurrency in real-world systems. True async isn’t about writing code — it’s about understanding how to give structure to simultaneous work.</p>
+            <div>
+                <a href="/posts/rust-async-error-handling-2" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+        <article class="glass-panel p-5 flex flex-col gap-3 hover:border-teal-400/60 transition">
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>29 Nov 2025</span>
+                <div class="flex gap-2">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#fibonacci</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#rust</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#python</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#algorithm</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#recursion</span><span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">#programming</span>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">
+                <a href="/posts/fibonacci-problem">Returning to the simplest complicated problem: a deep look at Fibonacci and two ways of writing it in Rust and Python</a></h2>
+            <p class="text-slate-600 dark:text-slate-300">This post explores two different approaches to the Fibonacci problem — the naive recursive method and the optimized memoized version — to show how a simple sequence reveals deep lessons about complexity, structure, recursion, and algorithmic thinking. The naive version demonstrates exponential growth and wasted computation, while the memoized version shows how adding memory transforms recursion into a powerful and efficient tool. Ultimately, Fibonacci becomes a metaphor for the essence of programming: making the right choices.</p>
+            <div>
+                <a href="/posts/fibonacci-problem" class="text-sm text-teal-600 hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-100">Read post →</a>
+            </div>
+        </article>
+        
+    </div>
+    
+    <div class="flex items-center justify-center gap-3 text-sm">
+        
+        <span class="px-3 py-1.5 rounded-full border border-slate-100/60 dark:border-white/5 text-slate-400 dark:text-slate-600">←</span>
+        
+        <span class="text-xs uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">1 / 2</span>
+        
+        <a href="/?page=2" class="px-3 py-1.5 rounded-full border border-slate-200/70 dark:border-white/10 hover:border-teal-400/70 transition">→</a>
+        
+    </div>
+    
+</div>
+
+                </section>
+                
+                <aside class="w-full lg:w-80 space-y-4">
+                    
+<div class="space-y-4">
+    
+    <div class="glass-panel p-4">
+        <h3 class="text-sm uppercase text-slate-600 dark:text-slate-300 mb-3">My social medias</h3>
+        <div class="flex flex-col gap-2">
+            
+            <a href="https://www.youtube.com/@drunkleen" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/youtube-light.svg" alt="Youtube" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/youtube-dark.svg" alt="Youtube" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Youtube</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://discord.gg/k8bPTR7Yuc" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/discord-white.svg" alt="Discord" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/discord-dark.svg" alt="Discord" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Discord</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://github.com/drunkleen" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/github-light.svg" alt="GitHub" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/github-dark.svg" alt="GitHub" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>GitHub</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://www.instagram.com/drunkleen/" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/instagram-light.svg" alt="Instagram" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/instagram-dark.svg" alt="Instagram" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Instagram</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://x.com/drunkleen" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/x-white.svg" alt="Twitter" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/x-dark.svg" alt="Twitter" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Twitter</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://techhub.social/@drunkleen" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/mastodon-light.svg" alt="Mastodon" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/mastodon-dark.svg" alt="Mastodon" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Mastodon</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/drunkleen/" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/linkedin-light.svg" alt="Linkedin" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/linkedin-dark.svg" alt="Linkedin" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Linkedin</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+            <a href="/cdn-cgi/l/email-protection#fd8e939c8d98bd998f88939691989893d39e9290" target="_blank" rel="noreferrer" class="flex items-center justify-between rounded-2xl border border-slate-200/70 dark:border-white/10 px-3 py-2 text-sm text-slate-700 dark:text-slate-100 hover:border-teal-400/70 hover:text-teal-600 dark:hover:text-teal-200 transition">
+                <span class="flex items-center gap-2">
+                    
+                        
+                        <img src="/static/img/icons/email-white.svg" alt="Email" class="w-5 h-5 object-contain rounded-full border border-slate-200/80 dark:hidden inline-block">
+                        
+                    
+                    
+                        
+                        <img src="/static/img/icons/email-dark.svg" alt="Email" class="w-5 h-5 object-contain rounded-full border border-white/20 hidden dark:inline-block">
+                        
+                    
+                    <span>Email</span>
+                </span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            
+        </div>
+    </div>
+    
+    
+    <div class="glass-panel p-4">
+        <h3 class="text-sm uppercase text-slate-600 dark:text-slate-300 mb-3">Latest posts</h3>
+        <div class="space-y-3">
+            
+            <a href="/posts/this-is-for-everyone-when-the-web%27s-creator-talks-about-his-dream" class="block rounded-2xl border border-transparent px-3 py-2 hover:border-teal-400/70 transition">
+                <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-tight">This Is for Everyone — When the Web&#39;s Creator Talks About His Dream</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">25 Apr 2026</p>
+            </a>
+            
+            <a href="/posts/linux-kernels-when-the-names-multiply-adbd-meaning-gets-lost" class="block rounded-2xl border border-transparent px-3 py-2 hover:border-teal-400/70 transition">
+                <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-tight">Linux kernels: when the names multiply and the meaning gets lost</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">28 Dec 2025</p>
+            </a>
+            
+            <a href="/posts/unsafe-rust-starts-where-rust-no-longer-guarantees-safety" class="block rounded-2xl border border-transparent px-3 py-2 hover:border-teal-400/70 transition">
+                <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-tight">Unsafe Rust starts where Rust no longer guarantees safety</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">21 Dec 2025</p>
+            </a>
+            
+        </div>
+    </div>
+    
+    
+    <div class="glass-panel p-4">
+        <h3 class="text-sm uppercase text-slate-600 dark:text-slate-300 mb-3">Pages</h3>
+        <div class="flex flex-col gap-2 text-sm">
+            
+            <a href="/about" class="text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-200 transition">About</a>
+            
+            <a href="/projects" class="text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-200 transition">Projects</a>
+            
+            <a href="/support" class="text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-200 transition">Support</a>
+            
+        </div>
+    </div>
+    
+    
+    <div class="glass-panel p-4">
+        <h3 class="text-sm uppercase text-slate-600 dark:text-slate-300 mb-3">Categories</h3>
+        <div class="flex flex-wrap gap-2">
+            
+            <a href="/categories/Algorithms" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Algorithms</a>
+            
+            <a href="/categories/Async" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Async</a>
+            
+            <a href="/categories/Book" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Book</a>
+            
+            <a href="/categories/Command-Line_Tools" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Command-Line_Tools</a>
+            
+            <a href="/categories/Education" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Education</a>
+            
+            <a href="/categories/Linux_%26_Servers" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Linux_&amp;_Servers</a>
+            
+            <a href="/categories/Open-Source" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Open-Source</a>
+            
+            <a href="/categories/Operating&#43;Systems" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Operating Systems</a>
+            
+            <a href="/categories/Permissions" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Permissions</a>
+            
+            <a href="/categories/Philosophic" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Philosophic</a>
+            
+            <a href="/categories/Privacy_%26_Security" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Privacy_&amp;_Security</a>
+            
+            <a href="/categories/Programming&#43;Concepts" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Programming Concepts</a>
+            
+            <a href="/categories/Python" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Python</a>
+            
+            <a href="/categories/Rust" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Rust</a>
+            
+            <a href="/categories/Self-Hosting" class="px-3 py-1 rounded-full border text-xs transition border-slate-200/70 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-cyan-400/80">Self-Hosting</a>
+            
+        </div>
+    </div>
+    
+    
+    <div class="glass-panel p-4">
+        <h3 class="text-sm uppercase text-slate-600 dark:text-slate-300 mb-3">Archive</h3>
+        <div class="space-y-4 text-sm">
+            
+            <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">2026</p>
+                <div class="mt-2 flex flex-col gap-1">
+                    
+                    <a href="/archive/2026/04" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>April</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(1)</span>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">2025</p>
+                <div class="mt-2 flex flex-col gap-1">
+                    
+                    <a href="/archive/2025/12" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>December</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(5)</span>
+                    </a>
+                    
+                    <a href="/archive/2025/11" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>November</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(3)</span>
+                    </a>
+                    
+                    <a href="/archive/2025/09" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>September</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(2)</span>
+                    </a>
+                    
+                    <a href="/archive/2025/08" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>August</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(1)</span>
+                    </a>
+                    
+                    <a href="/archive/2025/07" class="flex items-center justify-between rounded-2xl border border-transparent px-3 py-1.5 text-slate-700 dark:text-slate-200 hover:border-teal-400/60 hover:text-teal-600 dark:hover:text-teal-100 transition">
+                        <span>July</span>
+                        <span class="text-xs text-slate-400 dark:text-slate-500">(1)</span>
+                    </a>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+                </aside>
+                
+            </main>
+        </div>
+
+        
+        
+        
+        <div class="max-w-6xl mx-auto px-6 pb-8 w-full">
+            <div class="rounded-2xl border border-slate-200/60 dark:border-white/10 bg-white/80 dark:bg-white/5 p-3">
+                <ins class="adsbygoogle block w-full"
+                     style="display:block"
+                     data-ad-client="ca-pub-8557573804858508"
+                     data-ad-slot="ca-pub-8557573804858508"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+
+        <footer class="border-t border-slate-200 dark:border-white/10 py-6 text-sm text-slate-600 dark:text-slate-300">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3 px-6 text-center md:text-left">
+                <p>© 2025 DrunkLeen. Crafted with Go, HTMX, Tailwind, and an unreasonable amount of ☕.</p>
+                <div class="flex items-center justify-center gap-4">
+                    <a href="/privacy" class="hover:text-teal-400 transition">Privacy Policy</a>
+                    <span class="opacity-30">•</span>
+                    <a href="/contact" class="hover:text-teal-400 transition">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true">
+        <div class="search-panel">
+            <input type="search" id="search-input" placeholder="⌘ + K for instant discovery" autocomplete="off">
+            <div id="search-results" class="search-results text-sm"></div>
+        </div>
+    </div>
+</body>
+</html>
+
